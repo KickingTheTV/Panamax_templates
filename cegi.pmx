@@ -1,0 +1,100 @@
+---
+name: Auto cAdvisor + Grafana with InfluxDB + Elasticsearch
+description: A Docker Container metrics dashboard with Grafana, InfluxDB and ElasticSearch
+keywords: cAdvisor, grafana, influxdb, elasticsearch, all
+recommended: 
+type: Default
+documentation: "
+images:
+- category: 
+  name: influxdb
+  source: tutum/influxdb:latest
+  description: 
+  type: Default
+  expose: []
+  ports:
+  - host_port: '8086'
+    container_port: '8086'
+  - host_port: '8083'
+    container_port: '8083'
+  links: []
+  environment:
+  - variable: PRE_CREATE_DB
+    value: cadvisor
+  volumes: []
+- category: 
+  name: cadvisor
+  source: tifayuki/cadvisor:latest
+  description: 
+  type: Default
+  expose: []
+  ports:
+  - host_port: '8080'
+    container_port: '8080'
+  links:
+  - service: influxdb
+    alias: influxdb
+  environment:
+  - variable: DB_NAME
+    value: cadvisor
+  - variable: DB_USER
+    value: root
+  - variable: DB_PASS
+    value: root
+  volumes:
+  - host_path: "/var/run"
+    container_path: "/var/run"
+  - host_path: "/sys/fs/cgroup/"
+    container_path: "/sys/fs/cgroup/"
+  - host_path: "/var/lib/docker/"
+    container_path: "/var/lib/docker/"
+- category: 
+  name: elasticsearch
+  source: tutum/elasticsearch
+  description: 
+  type: Default
+  expose: []
+  ports:
+  - host_port: '9200'
+    container_port: '9200'
+  links: []
+  environment:
+  - variable: ELASTICSEARCH_USER
+    value: admin
+  - variable: ELASTICSEARCH_PASS
+    value: password
+  volumes: []
+- category: 
+  name: grafana
+  source: tutum/grafana:latest
+  description: 
+  type: Default
+  expose: []
+  ports:
+  - host_port: '80'
+    container_port: '80'
+  links: []
+  environment:
+  - variable: INFLUXDB_HOST
+    value: localhost
+  - variable: INFLUXDB_PORT
+    value: rgdata
+    - variable: INFLUXDB_NAME
+    value: cadvisor
+  - variable: INFLUXDB_USER
+    value: root
+    - variable: INFLUXDB_PASS
+    value: root
+  - variable: ELASTICSEARCH_HOST
+    value: localhost
+    - variable: ELASTICSEARCH_PORT
+    value: 9200
+  - variable: ELASTICSEARCH_USER
+    value: admin
+    - variable: ELASTICSEARCH_PASS
+    value: password
+  - variable: HTTP_USER
+    value: adminGrafana
+  - variable: HTTP_PASS
+    value: passGrafana
+  volumes: []
