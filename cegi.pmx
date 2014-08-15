@@ -1,10 +1,23 @@
----
-name: Auto cAdvisor + Grafana with InfluxDB + Elasticsearch
+name: Auto cAdvisor
 description: A Docker Container metrics dashboard with Grafana, InfluxDB and ElasticSearch
 keywords: cAdvisor, grafana, influxdb, elasticsearch, all
 recommended: 
 type: Default
-documentation: "
+documentation: |
+  Wordpress with MySQL
+  ============================
+  The alias for the link between Wordpress and MySQL needs to be _DB_1_. If this is changed, the template will not work.
+
+  Also, the password can be changed, but the environmental variables need to be changed on both services.
+
+  To view the GUI after launching the template, map your local host machine to port _8080_. If using Virtual Box, use the following command in your terminal to create the port forwarding rule:
+
+  `VboxManage controlvm panamax-vm natpf1 wordpress,tcp,,8997,,8080`
+
+  Where, wordpress is the friendly name of the rule, tcp is the protocol. Replace port _8997_ with the local free port of your choice. If you change the port bindings on the Wordpress service, _8080_ will need to be changed to match that too.
+
+  After you run this command locally, browse to **http://localhost:8997** to see the GUI, as per the example.
+authors: Bryan Lee
 images:
 - category: 
   name: influxdb
@@ -78,20 +91,20 @@ images:
   - variable: INFLUXDB_HOST
     value: localhost
   - variable: INFLUXDB_PORT
-    value: rgdata
-    - variable: INFLUXDB_NAME
+    value: 8086
+  - variable: INFLUXDB_NAME
     value: cadvisor
   - variable: INFLUXDB_USER
     value: root
-    - variable: INFLUXDB_PASS
+  - variable: INFLUXDB_PASS
     value: root
   - variable: ELASTICSEARCH_HOST
     value: localhost
-    - variable: ELASTICSEARCH_PORT
+  - variable: ELASTICSEARCH_PORT
     value: 9200
   - variable: ELASTICSEARCH_USER
     value: admin
-    - variable: ELASTICSEARCH_PASS
+  - variable: ELASTICSEARCH_PASS
     value: password
   - variable: HTTP_USER
     value: adminGrafana
