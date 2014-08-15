@@ -17,7 +17,7 @@ documentation: |
   Where, wordpress is the friendly name of the rule, tcp is the protocol. Replace port _8997_ with the local free port of your choice. If you change the port bindings on the Wordpress service, _8080_ will need to be changed to match that too.
 
   After you run this command locally, browse to **http://localhost:8997** to see the GUI, as per the example.
-authors: Bryan Lee
+authors:
 images:
 - category: 
   name: influxdb
