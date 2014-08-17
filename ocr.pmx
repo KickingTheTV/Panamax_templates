@@ -1,0 +1,55 @@
+name: Auto OCR
+description: A Docker Container running OCR software
+keywords: rabbitmq, ocr
+recommended: 
+type: Default
+documentation: |
+  OpenOCR
+  ============================
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida fringilla erat, et vestibulum nisl scelerisque sed. Sed metus turpis, mattis id gravida sit amet, feugiat nec mauris. Suspendisse id malesuada odio, vitae tempor leo. Cras lorem quam, mattis at diam at, ultricies eleifend orci. Maecenas eros tellus, fermentum at nisl ac, fermentum feugiat sem. Nam orci lectus, sagittis ac viverra vitae, euismod quis metus. Phasellus nisi arcu, faucibus id risus eget, aliquet volutpat elit. Quisque vehicula, est eu tempor tincidunt, lectus sapien laoreet mauris, a consectetur felis tellus sed est. Proin molestie leo vel magna tristique ultricies. Aenean pretium magna erat, et suscipit risus faucibus quis. Quisque tristique, lectus et cursus commodo, turpis purus porttitor orci, in elementum arcu ipsum dapibus lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris eget neque vehicula, sagittis dui ut, dignissim quam. Phasellus venenatis a lectus sed ullamcorper. In commodo, enim vitae aliquam vehicula, erat felis congue dui, et blandit dolor leo tempor mi. Nunc tincidunt tristique nunc at ultricies.
+authors: Bryan Lee
+images:
+- category: 
+  name: Rabbitmq
+  source: tutum/rabbitmq:latest
+  description: 
+  type: Default
+  expose: []
+  ports:
+  - host_port: '5672'
+    container_port: '5672'
+  - host_port: '15672'
+    container_port: '15672'
+  links: []
+  environment:
+  - variable: RABBITMQ_PASS
+    value: password
+  volumes: []
+- category: 
+  name: OCR_HTTP
+  source: tifayuki/ocr:http
+  description: 
+  type: Default
+  expose: []
+  ports:
+  - host_port: '80'
+    container_port: '80'
+  links: []
+  environment:
+  - variable: HTTP_PORT
+    value: 80
+  - variable: AMQP_URI
+    value: "amqp://admin:password@localhost"
+  volumes: []
+- category: 
+  name: OCR_WORKER
+  source: tifayuki/ocr:worker
+  description: 
+  type: Default
+  expose: []
+  ports: []
+  links: []
+  environment:
+  - variable: AMQP_URI
+    value: "amqp://admin:password@localhost"
+  volumes: []
