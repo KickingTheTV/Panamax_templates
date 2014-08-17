@@ -7,7 +7,7 @@ documentation: |
   OpenOCR
   ============================
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida fringilla erat, et vestibulum nisl scelerisque sed. Sed metus turpis, mattis id gravida sit amet, feugiat nec mauris. Suspendisse id malesuada odio, vitae tempor leo. Cras lorem quam, mattis at diam at, ultricies eleifend orci. Maecenas eros tellus, fermentum at nisl ac, fermentum feugiat sem. Nam orci lectus, sagittis ac viverra vitae, euismod quis metus. Phasellus nisi arcu, faucibus id risus eget, aliquet volutpat elit. Quisque vehicula, est eu tempor tincidunt, lectus sapien laoreet mauris, a consectetur felis tellus sed est. Proin molestie leo vel magna tristique ultricies. Aenean pretium magna erat, et suscipit risus faucibus quis. Quisque tristique, lectus et cursus commodo, turpis purus porttitor orci, in elementum arcu ipsum dapibus lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris eget neque vehicula, sagittis dui ut, dignissim quam. Phasellus venenatis a lectus sed ullamcorper. In commodo, enim vitae aliquam vehicula, erat felis congue dui, et blandit dolor leo tempor mi. Nunc tincidunt tristique nunc at ultricies.
-authors: Bryan Lee
+authors: "Bryan Lee"
 images:
 - category: 
   name: Rabbitmq
